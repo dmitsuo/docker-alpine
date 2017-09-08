@@ -1,0 +1,1 @@
+export JAVA_OPTS="$JAVA_OPTS -Duser.language=pt -Duser.country=BR -Duser.timezone=America/Belem"
