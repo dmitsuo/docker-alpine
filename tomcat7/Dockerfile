@@ -9,7 +9,7 @@ ENV TOMCAT_DOWN_FILE $TOMCAT_DIR.tar.gz
 ENV CATALINA_HOME /opt/$TOMCAT_DIR
 ENV PATH $CATALINA_HOME/bin:$PATH
 
-ADD http://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/$TOMCAT_DOWN_FILE /opt
+ADD http://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/$TOMCAT_DOWN_FILE /opt/
 
 WORKDIR $CATALINA_HOME
 COPY setenv.sh bin/setenv.sh
