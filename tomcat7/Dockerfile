@@ -22,4 +22,4 @@ VOLUME "$CATALINA_HOME/logs"
 
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+CMD ["$CATALINA_HOME/bin/catalina.sh", "run"]
