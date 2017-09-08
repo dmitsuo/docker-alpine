@@ -1,0 +1,1 @@
+export JAVA_OPTS="$JAVA_OPTS -XX:MaxPermSize=512m -Duser.language=pt -Duser.country=BR -Duser.timezone=America/Belem"
