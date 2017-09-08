@@ -2,7 +2,6 @@ FROM openjdk:7-jdk-alpine
 
 RUN addgroup -S caos && adduser -D -S -G caos caos
 
-
 RUN set -x ; \
     mkdir /opt ; \
     chmod 755 /opt ; \
