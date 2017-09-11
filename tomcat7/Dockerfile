@@ -25,8 +25,10 @@ COPY setenv.sh bin/setenv.sh
 COPY tomcat-users.xml conf/tomcat-users.xml
 COPY logging.properties conf/logging.properties
 
-# Estudar comando abaixo
-VOLUME "$CATALINA_HOME/logs"
+# Volume nomeado deve ser declarado no momento de criar o container, com o
+# parametro "-v nome-do-volume:/opt/apache-tomcat-7.0.59/logs" e nao aqui no Dockerfile
+# ver https://boxboat.com/2017/01/23/volumes-and-dockerfiles-dont-mix/
+#VOLUME "$CATALINA_HOME/logs"
 
 EXPOSE 8080
 
