@@ -24,7 +24,6 @@ RUN set -x ; \
 WORKDIR $WILDFLY_HOME
 
 #COPY $CONFIG_FILE standalone/configuration/$CONFIG_FILE
-#COPY standalone.conf bin/standalone.conf
 
 EXPOSE 8080 9990
 
