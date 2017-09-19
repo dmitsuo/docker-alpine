@@ -28,4 +28,4 @@ COPY standalone.conf bin/standalone.conf
 EXPOSE 8080 9990
 
 #CMD bin/standalone.sh --server-config=$CONFIG_FILE -b 0.0.0.0
-CMD bin/standalone.sh -b 0.0.0.0
+CMD bin/standalone.sh -b=0.0.0.0 -bmanagement=0.0.0.0
