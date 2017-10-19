@@ -10,7 +10,7 @@ USER root
 
 RUN set -x ; \
     apk add --no-cache --virtual .tmp-deps curl ; \
-    curl -o /opt/$JBOSS_ZIP -L https://www.dropbox.com/s/zmv8och1s78ibmp/$JBOSS_ZIP?dl=1 ; \
+    curl -o /opt/$JBOSS_ZIP -L https://www.dropbox.com/s/jm98r1u7dktz7yu/$JBOSS_ZIP?dl=1 ; \
     unzip /opt/$JBOSS_ZIP ; \
     rm -f /opt/$JBOSS_ZIP ; \
     apk del .tmp-deps ; \
