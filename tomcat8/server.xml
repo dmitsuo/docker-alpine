@@ -69,8 +69,8 @@
     <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" 
-               compression="on" compressionMinSize="256" noCompressionUserAgents="gozilla, traviata"
-               compressableMimeType="text/html,text/xml,application/xml,application/xhtml+xml,text/javascript,text/css,text/plain,text/csv,text/rtf,application/x-javascript,application/javascript,image/svg+xml"/>
+               compression="on" compressionMinSize="128" noCompressionUserAgents="gozilla, traviata"
+               compressableMimeType="application/json,text/html,text/xml,application/xml,application/xhtml+xml,text/javascript,text/css,text/plain,text/csv,text/rtf,application/x-javascript,application/javascript,image/svg+xml"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
