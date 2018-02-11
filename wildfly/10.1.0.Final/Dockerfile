@@ -8,7 +8,7 @@ ENV JBOSS_HOME $WILDFLY_HOME
 ENV PATH $WILDFLY_HOME/bin:$PATH
 ENV WILDFLY_DOWN_FILE wildfly-$WILDFLY_VERSION.tar.gz
 #ENV CONFIG_FILE standalone-full.xml
-ENV CONFIG_FILE standalone.xml
+#ENV CONFIG_FILE standalone.xml
 
 RUN set -x ; \
     mkdir -p $WILDFLY_HOME ; \
@@ -18,13 +18,14 @@ RUN set -x ; \
     rm -rf bin/*.bat ; \
     rm -rf bin/*.ps1 ; \
     rm -rf $WILDFLY_DOWN_FILE ; \
+    echo -e "\nJAVA_OPTS=\"\$JAVA_OPTS -Duser.language=pt -Duser.country=BR -Duser.timezone=America/Belem\"" >> $WILDFLY_HOME/bin/standalone.conf ; \
     chown root:root -R /opt
 
 WORKDIR $WILDFLY_HOME
 
 #COPY $CONFIG_FILE standalone/configuration/$CONFIG_FILE
-COPY standalone.conf bin/standalone.conf
 
 EXPOSE 8080 9990
 
-CMD standalone.sh --server-config=$CONFIG_FILE -b 0.0.0.0
+#CMD bin/standalone.sh --server-config=$CONFIG_FILE -b 0.0.0.0
+CMD bin/standalone.sh -b=0.0.0.0 -bmanagement=0.0.0.0

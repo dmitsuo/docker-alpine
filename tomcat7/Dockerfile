@@ -17,7 +17,8 @@ RUN set -x ; \
     rm -rf $CATALINA_HOME/bin/*.bat ; \
     rm -rf $TOMCAT_DOWN_FILE ; \
     rm -rf $CATALINA_HOME/webapps/docs ; \
-    rm -rf $CATALINA_HOME/webapps/examples
+    rm -rf $CATALINA_HOME/webapps/examples ; \
+    ln -s $CATALINA_HOME /opt/tomcat
 
 WORKDIR $CATALINA_HOME
 COPY setenv.sh bin/setenv.sh
