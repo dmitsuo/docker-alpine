@@ -20,7 +20,17 @@ RUN set -x ; \
     ln -s $CATALINA_HOME /opt/tomcat ; \
     rm -rf $CATALINA_HOME/webapps/* ; \
     apk del curl && rm -rf /tmp/* /var/cache/apk/* ; \
-    chown -R caos:caos /opt
+    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 > /tmp/myfile    ; \
+    ${JAVA_HOME}/bin/keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048      \
+    -storetype PKCS12 -keystore ${TOMCAT_CONF_DIR}/tomcat-keystore.p12 -validity 3650   \
+    -dname "cn=myappserver,ou=mydept,o=mycompany,l=mycity,s=ss,c=cc"                  \
+    -keypass $(cat /tmp/myfile) -storepass $(cat /tmp/myfile)                       ; \
+    sed -i "71s|.*|redirectPort=\"8443\" compression=\"on\" compressionMinSize=\"128\" compressibleMimeType=\"application/json,text/html,text/xml,application/xml,application/xhtml+xml,text/javascript,text/css,text/plain,text/csv,text/rtf,application/x-javascript,application/javascript,image/svg+xml\"/>|" $TOMCAT_CONF_DIR/server.xml ; \
+    sed -i "114s|.*|<Connector port=\"8443\" protocol=\"org.apache.coyote.http11.Http11NioProtocol\" maxThreads=\"200\" SSLEnabled=\"true\" scheme=\"https\" secure=\"true\" keystoreFile=\"${TOMCAT_CONF_DIR}/tomcat-keystore.p12\" keystorePass=\"$(cat /tmp/myfile)\" clientAuth=\"false\" sslProtocol=\"TLS\" compression=\"on\" compressionMinSize=\"128\" compressibleMimeType=\"application/json,text/html,text/xml,application/xml,application/xhtml+xml,text/javascript,text/css,text/plain,text/csv,text/rtf,application/x-javascript,application/javascript,image/svg+xml\" />|" $TOMCAT_CONF_DIR/server.xml ; \
+    echo $'\nexport JAVA_OPTS="$JAVA_OPTS -Duser.language=pt -Duser.country=BR -Duser.timezone=America/Belem"' >> ${TOMCAT_BIN_DIR}/setenv.sh ; \
+    echo $'\njava.util.logging.SimpleFormatter.format=%1$tF %1$tT [%4$s][%2$s] %5$s %6$s %n' >> ${TOMCAT_CONF_DIR}/logging.properties ; \
+    chown -R caos:caos /opt ; \
+    rm -f /tmp/myfile
 
 USER caos
 
