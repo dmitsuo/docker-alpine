@@ -18,6 +18,7 @@ RUN set -x ; \
     gunzip /tmp/apache-tomcat.tar.gz ; \
     tar -C /opt -xf /tmp/apache-tomcat.tar ; \
     ln -s $CATALINA_HOME /opt/tomcat ; \
+    rm -rf $CATALINA_HOME/webapps/* ; \
     apk del curl && rm -rf /tmp/* /var/cache/apk/* ; \
     chown -R caos:caos /opt
 
