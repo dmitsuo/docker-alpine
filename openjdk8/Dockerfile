@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-RUN addgroup -S caos && adduser -D -S -G caos caos
+RUN addgroup -g 1000 -S caos && adduser -u 1000 -D -S -G caos caos
 
 RUN set -x ; \
     mkdir /opt ; \
